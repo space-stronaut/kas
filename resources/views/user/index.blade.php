@@ -5,53 +5,44 @@
         <div class="card">
             <div class="card-header justify-content-between align-items-center">
                 <div>
-                    Manajemen Pngeluaran
+                    Setup User
                 </div>
-                @if (Auth::user()->role != 'pemantau')
                 <div>
-                    <a href="{{ route('pengeluaran.create') }}" class="btn btn-primary">+</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-primary">+</a>
                 </div>
-                @endif
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
-                            <th>Bendahara</th>
-                            <th>Rekening</th>
-                            <th>Kegiatan</th>
-                            <th>Pengeluaran</th>
-                            {{-- <th>Action</th> --}}
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($pengeluarans as $item)
+                        @forelse ($users as $item)
                             <tr>
                                 <th>{{ $loop->iteration }}</th>
                                 <td>
-                                    {{$item->user->name}}
+                                    {{$item->name}}
                                 </td>
                                 <td>
-                                    {{$item->rekening->nama_rekening}}
+                                    {{$item->email}}
                                 </td>
                                 <td>
-                                    {{$item->nama_kegiatan}}
+                                    {{ $item->role }}
                                 </td>
-                                <td>
-                                    @currency($item->jumlah_pengeluaran)
-                                    {{-- {{$item->jumlah_pengeluaran}} --}}
-                                </td>
-                                @if (Auth::user()->role != 'pemantau')
                                 <td class="d-flex">
-                                    {{-- <a href="{{ route('pengeluaran.edit', $item->id) }}" class="btn btn-success">Edit</a> --}}
-                                    <form action="{{ route('pengeluaran.destroy', $item->id) }}" method="post">
+                                    {{-- <a href="{{ route('rekening.edit', $item->id) }}" class="btn btn-success">Edit</a> --}}
+                                    <form action="{{ route('user.destroy', $item->id) }}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-danger ms-2" onclick="return confirm('Yakin ingin menghapusnya?')">Delete</button>
                                     </form>
                                 </td>
-                                @endif
                             </tr>
                         @empty
                             <tr>

@@ -16,6 +16,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
+                            <th>Nomor Rekening</th>
                             <th>Nama Rekening</th>
                             <th>Saldo</th>
                             <th>Action</th>
@@ -26,11 +27,15 @@
                             <tr>
                                 <th>{{ $loop->iteration }}</th>
                                 <td>
+                                    {{$item->norek}}
+                                </td>
+                                <td>
                                     {{$item->nama_rekening}}
                                 </td>
                                 <td>
                                     @currency($item->uang)
                                 </td>
+                                @if (Auth::user()->role != 'pemantau')
                                 <td class="d-flex">
                                     <a href="{{ route('rekening.edit', $item->id) }}" class="btn btn-success">Edit</a>
                                     <form action="{{ route('rekening.destroy', $item->id) }}" method="post">
@@ -39,6 +44,7 @@
                                         <button class="btn btn-danger ms-2" onclick="return confirm('Yakin ingin menghapusnya?')">Delete</button>
                                     </form>
                                 </td>
+                                @endif
                             </tr>
                         @empty
                             <tr>

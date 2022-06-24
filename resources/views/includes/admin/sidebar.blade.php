@@ -44,6 +44,7 @@
                         </a>
                     </li> --}}
                     {{-- @if (Auth::user()->role == 'admin') --}}
+                    @if (Auth::user()->role == 'admin')
                     <li class="nav-item">
                         <a href="{{ route('rekening.index') }}" class="nav-link {{ Request::is('coa') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-home"></i>
@@ -52,6 +53,15 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('user.index') }}" class="nav-link {{ Request::is('coa') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-home"></i>
+                            <p>
+                                User
+                            </p>
+                        </a>
+                    </li>
+                    @endif
     
                     <li class="nav-item">
                         <a href="{{ route('pemasukan.index') }}" class="nav-link {{ Request::is('pengajuan') ? 'active' : '' }}">

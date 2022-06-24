@@ -7,9 +7,11 @@
                 <div>
                     Manajemen Pemasukan
                 </div>
+                @if (Auth::user()->role != 'pemantau')
                 <div>
                     <a href="{{ route('pemasukan.create') }}" class="btn btn-primary">+</a>
                 </div>
+                @endif
             </div>
             <div class="card-body">
                 <table class="table">
@@ -40,6 +42,7 @@
                                     {{-- {{$item->jumlah_pemasukan}} --}}
                                     @currency($item->jumlah_pemasukan)
                                 </td>
+                                @if (Auth::user()->role != 'pemantau')
                                 <td class="d-flex">
                                     {{-- <a href="{{ route('pengeluaran.edit', $item->id) }}" class="btn btn-success">Edit</a> --}}
                                     <form action="{{ route('pemasukan.destroy', $item->id) }}" method="post">
@@ -48,6 +51,7 @@
                                         <button class="btn btn-danger ms-2" onclick="return confirm('Yakin ingin menghapusnya?')">Delete</button>
                                     </form>
                                 </td>
+                                @endif
                             </tr>
                         @empty
                             <tr>

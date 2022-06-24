@@ -15,6 +15,10 @@
                 <form action="{{ route('rekening.store') }}" method="post">
                     @csrf
                     <div class="form-group">
+                        <label for="">Nomor Rekening</label>
+                        <input type="number" name="norek" id="" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label for="">Nama Rekening</label>
                         <input type="text" name="nama_rekening" id="" class="form-control">
                     </div>
